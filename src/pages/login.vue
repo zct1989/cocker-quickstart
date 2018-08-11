@@ -1,9 +1,21 @@
 <template>
   <q-page class="login flex flex-center">
-    <canvas ref="canvas" id="canvas"></canvas>
-    <div style="background:white;width:300px;height:400px;border-radius:10px;box-shadow:gray 5px 10px 10px;">
-
+    <div class="login-form column item-center justify-center">
+      <q-field icon="person" dark>
+        <q-input float-label="用户名" type="text" v-model="loginModel.username"></q-input>
+      </q-field>
+      <q-field icon="lock">
+        <q-input float-label="密码" type="password" v-model="loginModel.password"></q-input>
+      </q-field>
+      <q-field inset="icon">
+        <div class="row no-wrap items-end">
+          <q-input float-label="验证码" type="text" v-model="loginModel.code" maxlength="4"></q-input>
+          <img :src="verification.dataURL" @click="updateVerification"/>
+        </div>
+      </q-field>
+      <q-btn label="登陆" class="q-mt-xl" color="primary"></q-btn>
     </div>
+    <canvas ref="canvas" id="canvas"></canvas>
   </q-page>
 </template>
 
@@ -14,12 +26,25 @@
 import Component from "vue-class-component";
 import Vue from "vue";
 import Proton from "proton-js";
+import verification from "verification-code";
+
 @Component({})
 export default class Login extends Vue {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D | null;
   private readonly proton = new Proton();
   private readonly emitter = new Proton.Emitter();
+  private verification = verification.create();
+
+  private loginModel = {
+    username: "",
+    password: "",
+    code: ""
+  };
+
+  private updateVerification() {
+    this.verification = verification.create();
+  }
 
   mounted() {
     // 获取canvas
@@ -81,7 +106,7 @@ export default class Login extends Vue {
 
   updateProton() {
     requestAnimationFrame(this.updateProton);
-    this.emitter.rotation += 1.5;
+    this.emitter.rotation += 2;
     this.proton.update();
   }
 }
@@ -93,7 +118,7 @@ export default class Login extends Vue {
   background-color: #f0f0f0;
   margin: 0px;
   overflow: hidden;
-  background:transparent;
+  background: transparent;
 
   #canvas {
     position: absolute;
@@ -101,6 +126,12 @@ export default class Login extends Vue {
     height: 100%;
     width: 100%;
     background: #000;
+  }
+
+  .login-form {
+    width: 350px;
+    background-color: white;
+    padding: 30px 10px;
   }
 }
 </style>
