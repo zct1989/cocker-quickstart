@@ -7,7 +7,7 @@ module.exports = function (ctx) {
     plugins: [
       'boot',
       'i18n',
-      'axios'
+      'vuelidate'
     ],
     css: [
       'app.styl'
