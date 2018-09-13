@@ -1,7 +1,7 @@
 <template>
   <q-page class="login flex flex-center">
     <div class="login-form column item-center justify-center">
-      <q-field icon="person" :error="$v.loginModel.username.$error">
+      <q-field icon="person" error-label="请确认用户名格式正确" :error="$v.loginModel.username.$error">
         <q-input float-label="用户名" type="text" v-model="loginModel.username" @blur="$v.loginModel.username.$touch"></q-input>
       </q-field>
       <q-field icon="lock" error-label="请确认密码格式正确" :error="$v.loginModel.password.$error">
@@ -161,7 +161,7 @@ export default class Login extends Vue {
 
   .login-form {
     width: 350px;
-    background-color: white;
+    background-color: rgba(255,255,255,0.95);
     padding: 20px;
     border-radius: 5px;
     & > .q-field {
