@@ -1,6 +1,30 @@
 <template>
-  <q-toolbar class="work-tab toolbar fixed row no-warp justify-between" color="primary">
-    asd
+  <q-toolbar class="work-tab toolbar fixed row no-padding" color="primary" :style="tabStyle">
+    <div class="row no-wrap" style="width:100%">
+      <div style="width:20px">left</div>
+      <div class="tags-view-container scroll row no-wrap col overflow-hidden">
+        <q-chip ref="tag" class="q-mx-xs" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" closable color="green">right</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+        <q-chip ref="tag" square :name="123" color="grey">123</q-chip>
+      </div>
+      <div style="width:20px">right</div>
+    </div>
   </q-toolbar>
 </template>
 
@@ -17,10 +41,20 @@ const LayoutModule = namespace("layout");
 })
 export default class WorkTab extends Vue {
   @LayoutModule.State private collapse;
-  @Inject()
-  private layout
+  @Inject() private layout;
   get showDrawer() {
     return !this.collapse;
+  }
+
+  get tabStyle() {
+    const css = {};
+    if (this.layout.left.space) {
+      css[`width`] = `calc(100% - ${this.layout.left.size}px)`;
+    }
+
+    console.log(css);
+
+    return css;
   }
 
   // @Watch("layout.scroll")
@@ -37,8 +71,20 @@ export default class WorkTab extends Vue {
 </script>
 
 
-<style lang="less" scoped>
+<style lang="less">
 .work-tab {
   z-index: 100;
+  height: 32px;
+  min-height: 38px;
+  align-items: flex-end;
+  background-color: white;
+  .q-chip {
+    border-radius: 5px 5px 0 0;
+    margin: 0 1px;
+    text-align: center;
+    min-width: 80px;
+    height: 30px;
+    line-height: 50px;
+  }
 }
 </style>
