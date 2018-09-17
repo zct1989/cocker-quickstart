@@ -4,13 +4,13 @@ class User extends Model {
   private username
   private password
 
-  
+  private user
 
-  translate() {
-
+  public translate(data) {
+    this.user = data.user
   }
 
-  convert() {
+  public convert() {
     return {
       username: this.username,
       password: this.password
