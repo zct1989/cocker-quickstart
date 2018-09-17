@@ -6,6 +6,8 @@ declare module 'vue/types/vue' {
   interface Vue {
     $q: any
     $v: any
+    $router: any
+    $store: any
     $cocker: any
   }
 }
