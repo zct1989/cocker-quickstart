@@ -87,7 +87,7 @@ export default class Login extends Vue {
 
   private createCanvas() {
     // 获取canvas
-    this.canvas = this.$refs["canvas"] as HTMLCanvasElement;
+    this.canvas = this.$refs.canvas as HTMLCanvasElement;
     this.context = this.canvas.getContext("2d");
     // 设置canvas尺寸
     this.setCanvasSize();

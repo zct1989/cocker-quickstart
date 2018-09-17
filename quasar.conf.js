@@ -8,7 +8,8 @@ module.exports = function (ctx) {
       'boot',
       'i18n',
       'vuelidate',
-      'component'
+      'component',
+      'request'
     ],
     css: [
       'app.styl'

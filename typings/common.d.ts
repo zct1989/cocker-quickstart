@@ -1,0 +1,1 @@
+declare var __ENV_CONFIG__: any
